@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useContext,useState } from "react";
 import Values from "values.js";
+import { Contexto } from "./Contexto";
 
-const FormColor = ({list,setList}) => {
+const FormColor = () => {
   const [color, setColor] = useState("");
   const [error, setError] = useState(false);
+
+  const {setList,textColor} = useContext(Contexto)
 
   //en la arrow function de sebe pasar e como argumento, esto represetan el evento
   const handleGenerator = (e) => {
@@ -20,7 +23,7 @@ const FormColor = ({list,setList}) => {
 
   return (
     <div className="form-color">
-      <h1>Paleta de colores</h1>
+      <h1 style={{color:`${textColor}`}}>Paleta de colores</h1>
       <form onSubmit={handleGenerator}>
         <input
           type="text"
@@ -28,7 +31,7 @@ const FormColor = ({list,setList}) => {
           value={color}
           onChange={(e) => setColor(e.target.value)}
         />
-        <input type="submit" value="Generar" />
+        <input type="submit" value="Generar" style={{background:`${textColor}`}}/>
       </form>
       {error ? <p className="error">Color invalido</p>:null}
     </div>

@@ -1,18 +1,30 @@
-import { useState } from "react"
+import { useContext,useEffect,useState } from "react"
 import Clip from "/clipTransparent.png"
+import { Contexto } from "./Contexto";
 
-const SingleColor = ({ hexColor }) => {
+
+const SingleColor = ({ hexColor,type }) => {
 
     const [copy, setCopy] = useState(false);
+
+    const {setTextColor} = useContext(Contexto)
 
     const handleCopy = (color) => () => {
         const colorNew = `#${color}`;
         navigator.clipboard.writeText(colorNew);
         setCopy(true);
-        setTimeout(() => {
+        setTimeout(() => {0
             setCopy(false);
         }, 2000);
     }
+
+    useEffect(() => {
+        if (type === 'base'){
+            setTextColor(`#${hexColor}`)
+            //console.log(textColor)
+        }   
+    }, [hexColor])
+    
 
     return ( 
         <div className="single-card" style={{ backgroundColor: `#${hexColor}` }}>
