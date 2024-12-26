@@ -24,7 +24,7 @@ const FormColor = ({list,setList}) => {
       <form onSubmit={handleGenerator}>
         <input
           type="text"
-          placeholder="Ingresar color"
+          placeholder="Ingresar un color...en ingles"
           value={color}
           onChange={(e) => setColor(e.target.value)}
         />
